@@ -1,0 +1,5 @@
+include requirements.txt
+include test_requirements.txt
+include email_decomposer/resources/dist.female.first.txt
+include email_decomposer/resources/dist.male.first.txt
+include email_decomposer/resources/Names_2010Census.txt

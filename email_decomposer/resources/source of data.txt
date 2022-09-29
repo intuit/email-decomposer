@@ -1,0 +1,3 @@
+dist.female.first.txt - https://www2.census.gov/topics/genealogy/1990surnames/
+dist.male.first.txt - https://www2.census.gov/topics/genealogy/1990surnames/
+Names_2010Census.csv - https://www2.census.gov/topics/genealogy/2010surnames/
