@@ -1,9 +1,9 @@
 
-[![codecov](https://codecov.io/gh/intuit/email-decomposer/branch/main/graph/badge.svg)](https://codecov.io/gh/intuit/email-decomposer)
+<!--[![codecov](https://codecov.io/gh/intuit/email-decomposer/branch/main/graph/badge.svg)](https://codecov.io/gh/intuit/email-decomposer)
 [![CircleCI](https://circleci.com/gh/intuit/email-decomposer.svg?style=shield)](https://circleci.com/gh/intuit/email-decomposer)
 [![License](https://img.shields.io/github/license/intuit/email-decomposer)](https://raw.githubusercontent.com/intuit/email-decomposer/master/LICENSE)
 [![PyPI version](https://img.shields.io/pypi/v/email-decomposer)](https://pypi.org/project/email-decomposer)
-[![Downloads](https://pepy.tech/badge/email-decomposer)](https://pepy.tech/project/email-decomposer)
+[![Downloads](https://pepy.tech/badge/email-decomposer)](https://pepy.tech/project/email-decomposer)-->
 
 # email-decomposer
 **Decomposition of email to first name, last name, and host**
