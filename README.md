@@ -6,7 +6,7 @@
 [![Downloads](https://pepy.tech/badge/email-decomposer)](https://pepy.tech/project/email-decomposer)-->
 
 # email-decomposer
-**Decomposition of email address to first name, last name, and host**
+**Decomposition of email address to first name, last name, and host.**
 ### How to use
 #### Install
 ```
