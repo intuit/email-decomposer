@@ -5,7 +5,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/email-decomposer)](https://pypi.org/project/email-decomposer)
 [![Downloads](https://pepy.tech/badge/email-decomposer)](https://pepy.tech/project/email-decomposer)
 
-# email-decomposer
+# Email Decomposer
 **Decomposition of email address to first name, last name, and host.**
 ### How to use
 #### Install
