@@ -23,7 +23,7 @@ EmailDecomposer().decompose(data=['johndue@intuit.com'], get_host=True).head()
 
 |    | first_name   | last_name   | host                    |
 |---:|:-------------|:------------|:------------------------|
-|  johndue@intuit.com | John       | Due        | intuit.com |
+|  johndoe@intuit.com | John       | Doe        | intuit.com |
 #### Decompose a single email
 ```
 EmailDecomposer().decompose(data='johndue@intuit.com', get_host=True)
