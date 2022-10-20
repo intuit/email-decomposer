@@ -26,9 +26,9 @@ EmailDecomposer().decompose(data=['johndue@intuit.com'], get_host=True).head()
 |  johndoe@intuit.com | John       | Doe        | intuit.com |
 #### Decompose a single email
 ```
-EmailDecomposer().decompose(data='johndue@intuit.com', get_host=True)
+EmailDecomposer().decompose(data='johndoe@intuit.com', get_host=True)
 ```
-{'first_name': 'John', 'last_name': 'Due', 'host': 'intuit.com'}
+{'first_name': 'John', 'last_name': 'Doe', 'host': 'intuit.com'}
 ### Contributing
 
 See [CONTRIBUTING.md](https://github.com/intuit/email-decomposer/blob/main/CONTRIBUTING.md).
