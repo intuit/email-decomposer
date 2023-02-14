@@ -11,6 +11,8 @@ class TestEmailDecomposer:
     def test_fuzzily_get_email_full_name(self):
         result = email_decomposer.decompose('sarahk42@gmail.com')
         assert result['first_name'] == 'Sarah'
+        result = email_decomposer.decompose('ben@gmail.ccm')
+        assert result['first_name'] == 'Ben'
         result = email_decomposer.decompose('moshe.cohen@gmail.com')
         assert result['first_name'] == 'Moshe' and result['last_name'] == 'Cohen'
         result = email_decomposer.decompose('cohen.moshe@gmail.com')

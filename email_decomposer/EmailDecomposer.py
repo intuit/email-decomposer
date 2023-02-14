@@ -20,9 +20,9 @@ all_last_names_set = set(pd.read_csv(curr_path + '/resources/Names_2010Census.tx
 class EmailDecomposer:
 
     def __init__(self) -> None:
+        self.emails_first_or_last_name_functions = [self.__get_email_first_name_perfect_match,
+                                            self.__get_email_last_name_perfect_match]
         self.emails_full_names_functions = [self.__get_email_full_name_using_sep,
-                                            self.__get_email_first_name_perfect_match,
-                                            self.__get_email_last_name_perfect_match,
                                             self.__get_email_full_name_perfect_match,
                                             self.__get_email_full_name_perfect_match_reversed,
                                             self.__get_email_last_name_near_perfect_match,
@@ -35,13 +35,16 @@ class EmailDecomposer:
         email = email.lower()
         email_prefix = email.split(sep='@', maxsplit=1)[0]
         cleaned = re.sub(r'(?:^[\d]+)|(?:[+.\-_\d]+$)', '', email_prefix)
-        lemma = lemmatizer.lemmatize(cleaned)
-        if lemma in self.words_set:
-            return FullName('', '')
-        for func in self.emails_full_names_functions:
+        for func in self.emails_first_or_last_name_functions:
             full_name = func(cleaned)
             if full_name is not None and not full_name.is_empty():
                 return full_name
+        lemma = lemmatizer.lemmatize(cleaned)
+        if lemma not in self.words_set:
+            for func in self.emails_full_names_functions:
+                full_name = func(cleaned)
+                if full_name is not None and not full_name.is_empty():
+                    return full_name
         return FullName('', '')
 
     def __to_series(self, data: Sequence[object], name: str, dtype: object) -> pd.Series:
