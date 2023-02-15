@@ -32,3 +32,6 @@ EmailDecomposer().decompose(data='johndoe@intuit.com', get_host=True)
 ### Contributing
 
 See [CONTRIBUTING.md](https://github.com/intuit/email-decomposer/blob/main/CONTRIBUTING.md).
+
+### Related content
+https://medium.com/@elhanan.mishraky/cracking-the-code-on-email-addresses-7927128c92a0
