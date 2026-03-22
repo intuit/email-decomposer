@@ -1,14 +1,21 @@
 version: 2.1
+
 workflows:
   build_and_deploy:
     jobs:
       - build:
+          matrix:
+            parameters:
+              python-version: ["3.10", "3.11", "3.12", "3.13"]
           filters:
             tags:
               only: /.*/
       - deploy:
           requires:
-            - build
+            - build-3.10
+            - build-3.11
+            - build-3.12
+            - build-3.13
           filters:
             tags:
               only: /[0-9]+(\.[0-9]+)*/
@@ -16,17 +23,15 @@ workflows:
               ignore: /.*/
 jobs:
   build:
+    parameters:
+      python-version:
+        type: string
     docker:
-      - image: cimg/base:current
+      - image: cimg/python:<< parameters.python-version >>
     steps:
       - checkout
-      - run:
-          name: install python versions via pyenv
-          command: |
-            pyenv install --skip-existing 3.10 3.11 3.12 3.13
-            pyenv local 3.10 3.11 3.12 3.13
       - restore_cache:
-          key: v1-dependecy-cache-{{ checksum "pyproject.toml" }}-{{ checksum "Makefile" }}
+          key: v1-dependency-cache-{{ checksum "pyproject.toml" }}-{{ checksum "Makefile" }}-<< parameters.python-version >>
       - run:
           name: install python dependencies
           command: |
@@ -34,21 +39,22 @@ jobs:
       - save_cache:
           paths:
             - "~/.cache/pypoetry"
-          key: v1-dependecy-cache-{{ checksum "pyproject.toml" }}-{{ checksum "Makefile" }}
+          key: v1-dependency-cache-{{ checksum "pyproject.toml" }}-{{ checksum "Makefile" }}-<< parameters.python-version >>
       - run:
           name: run tests
           command: |
-            make test
+            TOXENV="py$(echo << parameters.python-version >> | tr -d '.')"
+            poetry run tox -e $TOXENV
             poetry run codecov
       - store_artifacts:
           path: htmlcov/
   deploy:
     docker:
-      - image: cimg/base:current
+      - image: cimg/python:3.11
     steps:
       - checkout
       - restore_cache:
-          key: v1-dependecy-cache-{{ checksum "pyproject.toml" }}-{{ checksum "Makefile" }}
+          key: v1-dependency-cache-{{ checksum "pyproject.toml" }}-{{ checksum "Makefile" }}-3.11
       - run:
           name: install python dependencies
           command: |
@@ -56,7 +62,7 @@ jobs:
       - save_cache:
           paths:
             - "~/.cache/pypoetry"
-          key: v1-dependecy-cache-{{ checksum "pyproject.toml" }}-{{ checksum "Makefile" }}
+          key: v1-dependency-cache-{{ checksum "pyproject.toml" }}-{{ checksum "Makefile" }}-3.11
       - run:
           name: verify git tag vs. version
           command: |
