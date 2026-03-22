@@ -1,2 +1,8 @@
 .idea/*
 .pytest_cache/
+.venv/
+/coverage.xml
+/.python-version
+/.coverage
+/poetry.lock
+__pycache__/

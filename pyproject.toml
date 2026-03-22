@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "email_decomposer"
+version = "0.0.5"
+description = "Fuzzy decomposition of email prefix to first/last name"
+authors = ["Elhanan Mishraky <elhanan_mishraky@intuit.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/intuit/email-decomposer"
+repository = "https://github.com/intuit/email-decomposer"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+]
+packages = [{include = "email_decomposer"}]
+include = [
+    "email_decomposer/resources/dist.female.first.txt",
+    "email_decomposer/resources/dist.male.first.txt",
+    "email_decomposer/resources/Names_2010Census.txt",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+pandas = ">=1.1.5"
+numpy = ">=1.19.4"
+nltk = ">=3.9.3"
+
+[tool.poetry.group.dev.dependencies]
+names = ">=0.3.0"
+pytest = "*"
+pytest-cov = "*"
+coverage = "*"
+codecov = "*"
+tox = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
